@@ -6,8 +6,11 @@ import { Artist } from '~/interfaces';
 type LoaderData = { artists: Array<Artist>, artistParam?: string };
 
 export let loader: LoaderFunction = async ({ params }) => {
-  const url = 'http://localhost:8788/api/artists'
-  const res = await fetch(url);
+  let url = 'http://localhost:8788/'
+  if (process.env.NODE_ENV === "production")
+    url = 'https://mct-flare.pages.dev/'
+    
+  const res = await fetch(url + 'api/artists');
   const artists = await res.json() as Array<Artist>;
   const data: LoaderData = {
       artists
