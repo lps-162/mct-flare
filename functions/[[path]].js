@@ -7,6 +7,6 @@ const handleRequest = createPagesFunctionHandler({
   build
 });
 
-export function onRequest(context) {
+export function onRequestGet(context) {
   return handleRequest(context);
 }
